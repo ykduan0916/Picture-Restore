@@ -405,45 +405,16 @@ function WelcomeScreen({ onFileSelect, repoStats }: { onFileSelect: (file: File)
         />
       </div>
 
-      {/* GitHub 和快速开始 */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8">
-        {/* GitHub 卡片 - 真实数据 */}
-        <article className="bg-gradient-to-br from-[#161D2B] to-[#1E2636] rounded-2xl p-8 border border-white/10">
-          <div className="flex items-start justify-between mb-6">
-            <div>
-              <h2 className="text-lg font-bold text-white mb-2">开源项目</h2>
-              <p className="text-sm text-white/50">欢迎 Star 和贡献代码</p>
-            </div>
-            <Github className="w-10 h-10 text-white/20" aria-hidden="true" />
-          </div>
-
-          <a
-            href="https://github.com/ykduan0916/Picture-Restore"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block mb-6 text-cyan-400 hover:text-cyan-300 font-mono text-sm transition focus-visible:outline-2 focus-visible:outline-cyan-500 rounded"
-          >
-            github.com/ykduan0916/Picture-Restore
-          </a>
-
-          <div className="grid grid-cols-3 gap-4">
-            <StatCard label="Stars" value={repoStats.stars} />
-            <StatCard label="Forks" value={repoStats.forks} />
-            <StatCard label="版本" value="v0.1" />
-          </div>
-        </article>
-
-        {/* 快速开始 */}
-        <article className="bg-gradient-to-br from-[#161D2B] to-[#1E2636] rounded-2xl p-8 border border-white/10">
-          <h2 className="text-lg font-bold text-white mb-6">快速开始</h2>
-          <ol className="space-y-4">
-            <StepItem number={1} text="上传商品原图" />
-            <StepItem number={2} text="选择生成类型（白底/场景/促销）" />
-            <StepItem number={3} text="AI 自动生成，保持商品细节" />
-            <StepItem number={4} text="下载或继续编辑" />
-          </ol>
-        </article>
-      </div>
+      {/* 快速开始 */}
+      <article className="bg-gradient-to-br from-[#161D2B] to-[#1E2636] rounded-2xl p-8 border border-white/10 max-w-3xl mx-auto mt-8">
+        <h2 className="text-lg font-bold text-white mb-6">快速开始</h2>
+        <ol className="space-y-4">
+          <StepItem number={1} text="上传商品原图" />
+          <StepItem number={2} text="选择生成类型（白底/场景/促销）" />
+          <StepItem number={3} text="AI 自动生成，保持商品细节" />
+          <StepItem number={4} text="下载或继续编辑" />
+        </ol>
+      </article>
     </div>
   )
 }
