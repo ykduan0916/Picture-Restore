@@ -72,7 +72,7 @@ class Asset(Base):
     mime_type = Column(String(100), nullable=False)
     width = Column(Integer, nullable=True)
     height = Column(Integer, nullable=True)
-    metadata = Column(JSON, nullable=True)  # AssetReference JSON
+    asset_metadata = Column(JSON, nullable=True)  # AssetReference JSON
     created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     # 关系
