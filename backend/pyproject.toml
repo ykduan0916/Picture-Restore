@@ -20,6 +20,7 @@ dependencies = [
     "boto3>=1.35.84,<2.0.0",  # S3 兼容存储
     "python-multipart>=0.0.20,<0.1.0",  # 文件上传
     "httpx>=0.28.1,<0.29.0",  # 异步 HTTP 客户端
+    "psycopg2-binary>=2.9.13",
 ]
 
 [project.optional-dependencies]
