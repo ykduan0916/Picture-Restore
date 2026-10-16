@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Upload, Layers, Sparkles, Image as ImageIcon, Download } from 'lucide-react'
+import { Upload, Layers, Sparkles, Image as ImageIcon } from 'lucide-react'
 import Canvas from './components/Canvas'
 import Sidebar from './components/Sidebar'
 import Toolbar from './components/Toolbar'
