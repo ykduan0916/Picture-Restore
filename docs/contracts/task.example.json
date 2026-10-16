@@ -1,0 +1,99 @@
+{
+  "schema_version": "0.2",
+  "example_only": true,
+  "job_id": "job_example_001",
+  "revision": 1,
+  "created_by_role": "planner",
+  "base_document_version": 1,
+  "sku_id": "fixture_earbuds_001",
+  "input_assets": [
+    {
+      "asset_id": "asset_original_001",
+      "version": 1,
+      "purpose": "product_original",
+      "sku_id": "fixture_earbuds_001",
+      "source": {
+        "kind": "self_authored_fixture",
+        "authorization": "test_only"
+      },
+      "allowed_usage": [
+        "visual_understanding",
+        "product_reference"
+      ]
+    }
+  ],
+  "facts": {
+    "product_name": {
+      "value": "示例耳机",
+      "source": "fixture_user_input"
+    },
+    "price": {
+      "value_minor": 19900,
+      "currency": "CNY",
+      "source": "fixture_user_input"
+    }
+  },
+  "brand_spec": {
+    "id": "brand_fixture_001",
+    "version": 1
+  },
+  "constraints": {
+    "mode": "preserve_product",
+    "preserve": [
+      "shape",
+      "color",
+      "logo",
+      "connectors",
+      "quantity"
+    ],
+    "allowed_operations": [
+      "mask_refinement",
+      "uniform_scale",
+      "translate",
+      "background_edit",
+      "shadow_layer",
+      "text_layer"
+    ],
+    "prohibited_operations": [
+      "product_regeneration",
+      "viewpoint_change",
+      "invent_product_facts"
+    ]
+  },
+  "deliverables": [
+    {
+      "id": "white",
+      "purpose": "white_background",
+      "width": 2048,
+      "height": 2048,
+      "format": "png"
+    },
+    {
+      "id": "scene",
+      "purpose": "summer_scene",
+      "width": 2048,
+      "height": 2048,
+      "format": "png"
+    },
+    {
+      "id": "promo",
+      "purpose": "promotion",
+      "width": 1080,
+      "height": 1440,
+      "format": "png"
+    }
+  ],
+  "execution_policy": {
+    "paid_calls_enabled": false,
+    "provider_mode": "mock",
+    "budget_limit_minor": null,
+    "currency": "CNY",
+    "max_quality_repair_rounds_per_deliverable": 2,
+    "max_feasibility_rounds": 2,
+    "max_agent_activations": 12,
+    "max_tool_calls_per_activation": 8,
+    "active_processing_deadline_seconds": 600
+  },
+  "acceptance_rules_version": "fixture_acceptance_v1",
+  "requires_user_acceptance": true
+}

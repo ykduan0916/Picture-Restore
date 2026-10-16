@@ -1,0 +1,264 @@
+{
+  "observed_date": "2026-10-15",
+  "endpoint": "http://192.168.11.88:3000/v1/models",
+  "http_status": 200,
+  "verification": "catalog_only_no_inference",
+  "model_count": 27,
+  "models": [
+    {
+      "id": "gpt-image-2",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-6.1-sol",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-image-2.5-sunburst",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "deepseek-v4-1-flash",
+      "object": "model",
+      "owned_by": "volcengine",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-sonnet-5",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "id": "deepseek-v4-flash",
+      "object": "model",
+      "owned_by": "volcengine",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-opus-5-5",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-sonnet-5-5",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "glm-5.2",
+      "object": "model",
+      "owned_by": "volcengine",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-sonnet-4-6",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-opus-4-7",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-opus-5",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "id": "claude-haiku-5-5",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "id": "gpt-6-sol",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "glm-5.3",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "id": "deepseek-v4-pro",
+      "object": "model",
+      "owned_by": "volcengine",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-opus-4-6",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-image-2.5-flare",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-6-astra",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "claude-opus-4-8",
+      "object": "model",
+      "owned_by": "claude",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "glm-5.3-flash",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "id": "gpt-5.5",
+      "object": "model",
+      "owned_by": "openai",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "id": "kimi-3",
+      "object": "model",
+      "owned_by": "volcengine",
+      "created": 1626777600,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    }
+  ]
+}

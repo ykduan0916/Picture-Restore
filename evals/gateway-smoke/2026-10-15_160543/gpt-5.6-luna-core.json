@@ -1,0 +1,26 @@
+{
+  "model": "gpt-5.6-luna",
+  "protocol": "responses",
+  "tool_call": "request_failed",
+  "tool_roundtrip": "not_tested",
+  "multi_image": "request_failed",
+  "tool_request": 2,
+  "vision_request": 4,
+  "vision_answer": null,
+  "vision_expected": {
+    "first_right_color": "blue",
+    "second_right_color": "green",
+    "second_extra_shape": "triangle",
+    "second_extra_color": "yellow",
+    "unchanged_left_shape": "square",
+    "unchanged_label": "L7"
+  },
+  "vision_checks": {
+    "first_right_color": false,
+    "second_right_color": false,
+    "second_extra_shape": false,
+    "second_extra_color": false,
+    "unchanged_left_shape": false,
+    "unchanged_label": false
+  }
+}

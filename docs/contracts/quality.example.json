@@ -1,0 +1,32 @@
+{
+  "schema_version": "0.2",
+  "example_only": true,
+  "job_id": "job_example_001",
+  "revision": 1,
+  "created_by_role": "qa",
+  "task_revision": 1,
+  "acceptance_rules_version": "fixture_acceptance_v1",
+  "scope": "single_deliverable",
+  "deliverable_id": "scene",
+  "artifact_ref": "artifact:scene_fixture@1",
+  "verdict": "fail",
+  "issues": [
+    {
+      "issue_id": "issue_fixture_001",
+      "category": "product_fidelity",
+      "severity": "blocking",
+      "bbox_xywh_normalized": [
+        0.61,
+        0.63,
+        0.12,
+        0.14
+      ],
+      "evidence": "演示用缺陷：右耳机接口边缘被蒙版切除，原图该处完整。",
+      "reference_asset": "asset:asset_original_001@1",
+      "suggested_owner": "retoucher",
+      "suggested_action": "恢复该区域原商品内容并修正蒙版，再重新合成。",
+      "requires_human_review": false
+    }
+  ],
+  "user_accepted": false
+}

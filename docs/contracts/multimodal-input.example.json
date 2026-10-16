@@ -1,0 +1,115 @@
+{
+  "schema_version": "0.2",
+  "example_only": true,
+  "job_id": "job_example_001",
+  "revision": 1,
+  "created_by_role": "planner",
+  "sku_id": "fixture_earbuds_001",
+  "fact_authority": "task:job_example_001@1",
+  "images": [
+    {
+      "asset_id": "asset_original_001",
+      "version": 1,
+      "purpose": "product_original",
+      "sku_id": "fixture_earbuds_001",
+      "source": {
+        "kind": "self_authored_fixture",
+        "authorization": "test_only"
+      },
+      "allowed_usage": [
+        "visual_understanding",
+        "product_reference"
+      ],
+      "original_dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "asset_id": "asset_style_fixture",
+      "version": 1,
+      "purpose": "style_reference",
+      "sku_id": "fixture_earbuds_001",
+      "source": {
+        "kind": "self_authored_fixture",
+        "authorization": "test_only"
+      },
+      "allowed_usage": [
+        "palette_reference",
+        "layout_reference"
+      ],
+      "forbidden_usage": [
+        "product_facts",
+        "price_source",
+        "replace_product_identity"
+      ]
+    },
+    {
+      "asset_id": "scene_fixture",
+      "version": 1,
+      "purpose": "candidate_result",
+      "sku_id": "fixture_earbuds_001",
+      "source": {
+        "kind": "fixture_tool_result",
+        "authorization": "test_only"
+      },
+      "allowed_usage": [
+        "quality_comparison"
+      ],
+      "original_dimensions": [
+        2048,
+        2048
+      ]
+    },
+    {
+      "asset_id": "crop_fixture_001",
+      "version": 1,
+      "purpose": "detail_crop",
+      "sku_id": "fixture_earbuds_001",
+      "source": {
+        "kind": "derived_fixture",
+        "authorization": "test_only"
+      },
+      "allowed_usage": [
+        "detail_inspection"
+      ],
+      "parent": {
+        "asset_id": "asset_original_001",
+        "version": 1
+      },
+      "parent_dimensions": [
+        2048,
+        2048
+      ],
+      "crop_xywh_pixels": [
+        512,
+        512,
+        256,
+        256
+      ],
+      "crop_dimensions": [
+        256,
+        256
+      ],
+      "resize_scale": 1,
+      "crop_to_parent_transform": [
+        1,
+        0,
+        512,
+        0,
+        1,
+        512,
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "transport_policy": {
+    "max_visual_images": 4,
+    "max_total_decoded_pixels": 4000000,
+    "overview_max_edge": 1536,
+    "detail_max_edge": 1024,
+    "silent_image_drop_allowed": false
+  }
+}

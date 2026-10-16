@@ -1,0 +1,186 @@
+{
+  "schema_version": "0.2",
+  "example_only": true,
+  "job_id": "job_example_001",
+  "revision": 1,
+  "created_by_role": "planner",
+  "task_revision": 1,
+  "base_document_version": 1,
+  "steps": [
+    {
+      "id": "design",
+      "kind": "agent",
+      "executor": "designer",
+      "depends_on": [],
+      "inputs": [
+        "task:job_example_001@1",
+        "brand:brand_fixture_001@1",
+        "asset:asset_original_001@1"
+      ],
+      "outputs": [
+        "design:design_fixture_001@1"
+      ],
+      "postconditions": [
+        "design_respects_product_constraints"
+      ]
+    },
+    {
+      "id": "prepare_subject",
+      "kind": "agent",
+      "executor": "retoucher",
+      "depends_on": [],
+      "inputs": [
+        "task:job_example_001@1",
+        "asset:asset_original_001@1"
+      ],
+      "outputs": [
+        "artifact:subject_fixture@1",
+        "artifact:mask_fixture@1"
+      ],
+      "postconditions": [
+        "original_hash_unchanged",
+        "subject_complete"
+      ]
+    },
+    {
+      "id": "feasibility",
+      "kind": "tool",
+      "executor": "validate_design_feasibility",
+      "depends_on": [
+        "design",
+        "prepare_subject"
+      ],
+      "inputs": [
+        "design:design_fixture_001@1",
+        "artifact:subject_fixture@1",
+        "artifact:mask_fixture@1"
+      ],
+      "outputs": [
+        "check:feasibility_fixture@1"
+      ],
+      "postconditions": [
+        "no_unsupported_viewpoint",
+        "required_assets_present"
+      ]
+    },
+    {
+      "id": "white",
+      "kind": "tool",
+      "executor": "compose_white_background",
+      "depends_on": [
+        "prepare_subject"
+      ],
+      "inputs": [
+        "artifact:subject_fixture@1",
+        "artifact:mask_fixture@1"
+      ],
+      "outputs": [
+        "artifact:white_fixture@1"
+      ],
+      "produces_deliverables": [
+        "white"
+      ],
+      "postconditions": [
+        "protected_region_check_passed",
+        "required_dimensions"
+      ]
+    },
+    {
+      "id": "scene",
+      "kind": "agent",
+      "executor": "retoucher",
+      "depends_on": [
+        "design",
+        "prepare_subject",
+        "feasibility"
+      ],
+      "inputs": [
+        "design:design_fixture_001@1",
+        "artifact:subject_fixture@1",
+        "artifact:mask_fixture@1",
+        "check:feasibility_fixture@1"
+      ],
+      "outputs": [
+        "artifact:scene_fixture@1"
+      ],
+      "produces_deliverables": [
+        "scene"
+      ],
+      "postconditions": [
+        "protected_region_check_passed",
+        "required_dimensions"
+      ]
+    },
+    {
+      "id": "render_promo",
+      "kind": "tool",
+      "executor": "render_promotion_document",
+      "depends_on": [
+        "design",
+        "scene"
+      ],
+      "inputs": [
+        "task:job_example_001@1",
+        "design:design_fixture_001@1",
+        "artifact:scene_fixture@1"
+      ],
+      "outputs": [
+        "artifact:promo_fixture@1",
+        "document:promo_fixture@1"
+      ],
+      "produces_deliverables": [
+        "promo"
+      ],
+      "postconditions": [
+        "text_matches_facts",
+        "no_text_overflow",
+        "required_dimensions"
+      ]
+    },
+    {
+      "id": "quality",
+      "kind": "agent",
+      "executor": "qa",
+      "depends_on": [
+        "white",
+        "scene",
+        "render_promo"
+      ],
+      "inputs": [
+        "task:job_example_001@1",
+        "asset:asset_original_001@1",
+        "design:design_fixture_001@1",
+        "artifact:white_fixture@1",
+        "artifact:scene_fixture@1",
+        "artifact:promo_fixture@1"
+      ],
+      "outputs": [
+        "report:quality_fixture@1"
+      ],
+      "postconditions": [
+        "each_deliverable_has_verdict",
+        "issues_are_locatable"
+      ]
+    },
+    {
+      "id": "review_ready",
+      "kind": "tool",
+      "executor": "publish_review_candidates",
+      "depends_on": [
+        "quality"
+      ],
+      "inputs": [
+        "report:quality_fixture@1"
+      ],
+      "outputs": [
+        "review:review_fixture@1"
+      ],
+      "preconditions": [
+        "all_deliverables_passed_automatic_checks"
+      ],
+      "postconditions": [
+        "user_review_available"
+      ]
+    }
+  ]
+}

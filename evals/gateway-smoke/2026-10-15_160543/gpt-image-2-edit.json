@@ -1,0 +1,13 @@
+{
+  "model": "gpt-image-2",
+  "request": 11,
+  "edit_interface": "request_failed",
+  "content_quality": "not_evaluated",
+  "settings": {
+    "model": "gpt-image-2",
+    "prompt": "Edit the provided test product image. Change ONLY the flat gray background to a flat light cyan background (#b9eff2). Keep the exact red bottle silhouette, black cap, white label with L7, and small blue circular mark unchanged. The mask transparent area is editable; opaque area is protected. Do not add shadows, decorations or extra text.",
+    "size": "1024x1024",
+    "quality": "low",
+    "n": "1"
+  }
+}

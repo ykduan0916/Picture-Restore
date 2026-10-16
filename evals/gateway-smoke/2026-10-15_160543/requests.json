@@ -1,0 +1,722 @@
+[
+  {
+    "number": 1,
+    "label": "gpt-6.1-sol:tool_call",
+    "endpoint": "/v1/responses",
+    "request": {
+      "model": "gpt-6.1-sol",
+      "max_output_tokens": 1024,
+      "store": false,
+      "reasoning": {
+        "effort": "low"
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Call lookup_export_profile for sku_square. After receiving the tool result, return only JSON with receipt, width, height copied exactly from that result. Never invent values."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "name": "lookup_export_profile",
+          "description": "Read a local test export profile; has no external side effects.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "profile_id": {
+                "type": "string",
+                "enum": [
+                  "sku_square"
+                ]
+              }
+            },
+            "required": [
+              "profile_id"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      ],
+      "tool_choice": {
+        "type": "function",
+        "name": "lookup_export_profile"
+      }
+    },
+    "http_status": 200,
+    "request_id": "bd68fb2f-e819-4318-90ba-b73c76dd11c3",
+    "response": {
+      "id": "resp_0",
+      "object": "response",
+      "output": [
+        {
+          "arguments": "{\"profile_id\":\"sku_square\"}",
+          "call_id": "sg_call_0",
+          "encrypted_function_args": [],
+          "id": "fc_0",
+          "name": "lookup_export_profile",
+          "status": "completed",
+          "type": "function_call"
+        }
+      ],
+      "output_text": "",
+      "prompt_cache_key": "38e78725-eeb2-c825-5d07-1a2dfeb7dd74",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 115,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 13,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 128
+      }
+    },
+    "elapsed_seconds": 2.926
+  },
+  {
+    "number": 2,
+    "label": "gpt-5.6-luna:tool_call",
+    "endpoint": "/v1/responses",
+    "request": {
+      "model": "gpt-5.6-luna",
+      "max_output_tokens": 1024,
+      "store": false,
+      "reasoning": {
+        "effort": "low"
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Call lookup_export_profile for sku_square. After receiving the tool result, return only JSON with receipt, width, height copied exactly from that result. Never invent values."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "name": "lookup_export_profile",
+          "description": "Read a local test export profile; has no external side effects.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "profile_id": {
+                "type": "string",
+                "enum": [
+                  "sku_square"
+                ]
+              }
+            },
+            "required": [
+              "profile_id"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      ],
+      "tool_choice": {
+        "type": "function",
+        "name": "lookup_export_profile"
+      }
+    },
+    "http_status": 503,
+    "request_id": null,
+    "error": {
+      "error": {
+        "message": "No available channel for model gpt-5.6-luna under group GT_INNER (distributor) (request id: 202610150805434325506998268d9d6AYJ2G1f5)",
+        "type": "new_api_error",
+        "param": "",
+        "code": "model_not_found"
+      }
+    },
+    "elapsed_seconds": 0.156
+  },
+  {
+    "number": 3,
+    "label": "claude-sonnet-5-5:tool_call",
+    "endpoint": "/v1/chat/completions",
+    "request": {
+      "model": "claude-sonnet-5-5",
+      "max_tokens": 512,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Call lookup_export_profile for sku_square. After receiving the tool result, return only JSON with receipt, width, height copied exactly from that result. Never invent values."
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "lookup_export_profile",
+            "description": "Read a local test export profile; has no external side effects.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "profile_id": {
+                  "type": "string",
+                  "enum": [
+                    "sku_square"
+                  ]
+                }
+              },
+              "required": [
+                "profile_id"
+              ],
+              "additionalProperties": false
+            },
+            "strict": true
+          }
+        }
+      ],
+      "tool_choice": {
+        "type": "function",
+        "function": {
+          "name": "lookup_export_profile"
+        }
+      }
+    },
+    "http_status": 200,
+    "request_id": "ec6f8b20-2717-4018-91b2-a242c274d265",
+    "response": {
+      "id": "msg_011Cg3gG7Vjyjwk4M7dePT7a",
+      "model": "claude-sonnet-5-5",
+      "object": "chat.completion",
+      "created": 1792051507,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "",
+            "tool_calls": [
+              {
+                "id": "toolu_01Nwv13VnH2mAJwjtmwTnr3J",
+                "type": "function",
+                "function": {
+                  "name": "lookup_export_profile",
+                  "arguments": "{\"profile_id\":\"sku_square\"}"
+                }
+              }
+            ]
+          },
+          "finish_reason": "tool_calls"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 485,
+        "completion_tokens": 62,
+        "total_tokens": 547,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "billing_usage": {
+          "source": "claude_messages",
+          "semantic": "anthropic",
+          "claude_usage": {
+            "input_tokens": 485,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 62,
+            "cache_creation": {},
+            "claude_cache_creation_5_m_tokens": 0,
+            "claude_cache_creation_1_h_tokens": 0
+          }
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 485,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    "elapsed_seconds": 14.94
+  },
+  {
+    "number": 4,
+    "label": "gpt-5.6-luna:multi_image",
+    "endpoint": "/v1/responses",
+    "request": {
+      "model": "gpt-5.6-luna",
+      "max_output_tokens": 1024,
+      "store": false,
+      "reasoning": {
+        "effort": "low"
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "Compare the first and second image. Return only JSON with keys first_right_color, second_right_color, second_extra_shape, second_extra_color, unchanged_left_shape, unchanged_label. Use lowercase English color/shape words, and copy the visible label exactly. The second_extra fields refer to an object present only in image 2."
+            },
+            {
+              "type": "input_image",
+              "image_url": "[fixture image data]",
+              "detail": "high"
+            },
+            {
+              "type": "input_image",
+              "image_url": "[fixture image data]",
+              "detail": "high"
+            }
+          ]
+        }
+      ]
+    },
+    "http_status": 503,
+    "request_id": null,
+    "error": {
+      "error": {
+        "message": "No available channel for model gpt-5.6-luna under group GT_INNER (distributor) (request id: 202610150805435470785998268d9d6IgWRtH9X)",
+        "type": "new_api_error",
+        "param": "",
+        "code": "model_not_found"
+      }
+    },
+    "elapsed_seconds": 0.124
+  },
+  {
+    "number": 5,
+    "label": "gpt-6.1-sol:tool_result",
+    "endpoint": "/v1/responses",
+    "request": {
+      "model": "gpt-6.1-sol",
+      "max_output_tokens": 1024,
+      "store": false,
+      "reasoning": {
+        "effort": "low"
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": "Call lookup_export_profile for sku_square. After receiving the tool result, return only JSON with receipt, width, height copied exactly from that result. Never invent values."
+        },
+        {
+          "arguments": "{\"profile_id\":\"sku_square\"}",
+          "call_id": "sg_call_0",
+          "encrypted_function_args": [],
+          "id": "fc_0",
+          "name": "lookup_export_profile",
+          "status": "completed",
+          "type": "function_call"
+        },
+        {
+          "type": "function_call_output",
+          "call_id": "sg_call_0",
+          "output": "{\"receipt\": \"5c58a24bd4a5b70c\", \"width\": 2048, \"height\": 2048}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "name": "lookup_export_profile",
+          "description": "Read a local test export profile; has no external side effects.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "profile_id": {
+                "type": "string",
+                "enum": [
+                  "sku_square"
+                ]
+              }
+            },
+            "required": [
+              "profile_id"
+            ],
+            "additionalProperties": false
+          },
+          "strict": true
+        }
+      ],
+      "tool_choice": "none"
+    },
+    "http_status": 200,
+    "request_id": "8784f6d3-6af2-4c9d-8cc0-ade320db673a",
+    "response": {
+      "id": "resp_0",
+      "object": "response",
+      "output": [
+        {
+          "content": [
+            {
+              "annotations": [],
+              "text": "{\"receipt\":\"5c58a24bd4a5b70c\",\"width\":2048,\"height\":2048}",
+              "type": "output_text"
+            }
+          ],
+          "id": "msg_0",
+          "phase": "final_answer",
+          "role": "assistant",
+          "status": "completed",
+          "type": "message"
+        }
+      ],
+      "output_text": "{\"receipt\":\"5c58a24bd4a5b70c\",\"width\":2048,\"height\":2048}",
+      "prompt_cache_key": "38e78725-eeb2-c825-5d07-1a2dfeb7dd74",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 165,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 32,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 197
+      }
+    },
+    "elapsed_seconds": 10.597
+  },
+  {
+    "number": 6,
+    "label": "gpt-6.1-sol:multi_image",
+    "endpoint": "/v1/responses",
+    "request": {
+      "model": "gpt-6.1-sol",
+      "max_output_tokens": 1024,
+      "store": false,
+      "reasoning": {
+        "effort": "low"
+      },
+      "input": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "input_text",
+              "text": "Compare the first and second image. Return only JSON with keys first_right_color, second_right_color, second_extra_shape, second_extra_color, unchanged_left_shape, unchanged_label. Use lowercase English color/shape words, and copy the visible label exactly. The second_extra fields refer to an object present only in image 2."
+            },
+            {
+              "type": "input_image",
+              "image_url": "[fixture image data]",
+              "detail": "high"
+            },
+            {
+              "type": "input_image",
+              "image_url": "[fixture image data]",
+              "detail": "high"
+            }
+          ]
+        }
+      ]
+    },
+    "http_status": 200,
+    "request_id": "d852f18a-b1c3-4984-9930-a607d50506bf",
+    "response": {
+      "id": "resp_0",
+      "object": "response",
+      "output": [
+        {
+          "content": [
+            {
+              "annotations": [],
+              "text": "{\"first_right_color\":\"blue\",\"second_right_color\":\"green\",\"second_extra_shape\":\"triangle\",\"second_extra_color\":\"yellow\",\"unchanged_left_shape\":\"square\",\"unchanged_label\":\"L7\"}",
+              "type": "output_text"
+            }
+          ],
+          "id": "msg_0",
+          "phase": "final_answer",
+          "role": "assistant",
+          "status": "completed",
+          "type": "message"
+        }
+      ],
+      "output_text": "{\"first_right_color\":\"blue\",\"second_right_color\":\"green\",\"second_extra_shape\":\"triangle\",\"second_extra_color\":\"yellow\",\"unchanged_left_shape\":\"square\",\"unchanged_label\":\"L7\"}",
+      "prompt_cache_key": "38e78725-eeb2-c825-5d07-1a2dfeb7dd74",
+      "status": "completed",
+      "usage": {
+        "input_tokens": 3785,
+        "input_tokens_details": {
+          "cached_tokens": 128
+        },
+        "output_tokens": 45,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3830
+      }
+    },
+    "elapsed_seconds": 15.074
+  },
+  {
+    "number": 7,
+    "label": "claude-sonnet-5-5:tool_result",
+    "endpoint": "/v1/chat/completions",
+    "request": {
+      "model": "claude-sonnet-5-5",
+      "max_tokens": 512,
+      "messages": [
+        {
+          "role": "user",
+          "content": "Call lookup_export_profile for sku_square. After receiving the tool result, return only JSON with receipt, width, height copied exactly from that result. Never invent values."
+        },
+        {
+          "role": "assistant",
+          "content": "",
+          "tool_calls": [
+            {
+              "id": "toolu_01Nwv13VnH2mAJwjtmwTnr3J",
+              "type": "function",
+              "function": {
+                "name": "lookup_export_profile",
+                "arguments": "{\"profile_id\":\"sku_square\"}"
+              }
+            }
+          ]
+        },
+        {
+          "role": "tool",
+          "tool_call_id": "toolu_01Nwv13VnH2mAJwjtmwTnr3J",
+          "content": "{\"receipt\": \"7c860ab99bf51440\", \"width\": 2048, \"height\": 2048}"
+        }
+      ],
+      "tools": [
+        {
+          "type": "function",
+          "function": {
+            "name": "lookup_export_profile",
+            "description": "Read a local test export profile; has no external side effects.",
+            "parameters": {
+              "type": "object",
+              "properties": {
+                "profile_id": {
+                  "type": "string",
+                  "enum": [
+                    "sku_square"
+                  ]
+                }
+              },
+              "required": [
+                "profile_id"
+              ],
+              "additionalProperties": false
+            },
+            "strict": true
+          }
+        }
+      ],
+      "tool_choice": "none"
+    },
+    "http_status": 200,
+    "request_id": "50af8d9d-f608-4439-8c57-0af61ba95e2e",
+    "response": {
+      "id": "msg_011Cg3gGTQokF5LxChmHFqZE",
+      "model": "claude-sonnet-5-5",
+      "object": "chat.completion",
+      "created": 1792051510,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "{\"receipt\": \"7c860ab99bf51440\", \"width\": 2048, \"height\": 2048}"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 586,
+        "completion_tokens": 34,
+        "total_tokens": 620,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "billing_usage": {
+          "source": "claude_messages",
+          "semantic": "anthropic",
+          "claude_usage": {
+            "input_tokens": 586,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 34,
+            "cache_creation": {},
+            "claude_cache_creation_5_m_tokens": 0,
+            "claude_cache_creation_1_h_tokens": 0
+          }
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 586,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    "elapsed_seconds": 2.96
+  },
+  {
+    "number": 8,
+    "label": "claude-sonnet-5-5:multi_image",
+    "endpoint": "/v1/chat/completions",
+    "request": {
+      "model": "claude-sonnet-5-5",
+      "max_tokens": 512,
+      "messages": [
+        {
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Compare the first and second image. Return only JSON with keys first_right_color, second_right_color, second_extra_shape, second_extra_color, unchanged_left_shape, unchanged_label. Use lowercase English color/shape words, and copy the visible label exactly. The second_extra fields refer to an object present only in image 2."
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "[fixture image data]",
+                "detail": "high"
+              }
+            },
+            {
+              "type": "image_url",
+              "image_url": {
+                "url": "[fixture image data]",
+                "detail": "high"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "http_status": 200,
+    "request_id": null,
+    "response": {
+      "id": "msg_011CfsLwb9Dd6oFyB1ZqrymL",
+      "model": "claude-sonnet-5-5",
+      "object": "chat.completion",
+      "created": 1792051514,
+      "choices": [
+        {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": "```json\n{\n  \"first_right_color\": \"blue\",\n  \"second_right_color\": \"green\",\n  \"second_extra_shape\": \"triangle\",\n  \"second_extra_color\": \"yellow\",\n  \"unchanged_left_shape\": \"square\",\n  \"unchanged_label\": \"L7\"\n}\n```"
+          },
+          "finish_reason": "stop"
+        }
+      ],
+      "usage": {
+        "prompt_tokens": 1151,
+        "completion_tokens": 151,
+        "total_tokens": 1302,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "billing_usage": {
+          "source": "claude_messages",
+          "semantic": "anthropic",
+          "claude_usage": {
+            "input_tokens": 1151,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 151,
+            "cache_creation": {},
+            "claude_cache_creation_5_m_tokens": 0,
+            "claude_cache_creation_1_h_tokens": 0
+          }
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 1151,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    "elapsed_seconds": 3.341
+  },
+  {
+    "number": 9,
+    "label": "gpt-image-2.5-sunburst:masked_edit",
+    "endpoint": "/v1/images/edits",
+    "request": {
+      "multipart": "self-authored fixture and mask"
+    },
+    "http_status": 503,
+    "request_id": null,
+    "error": {
+      "error": {
+        "message": "No available channel for model gpt-image-2.5-sunburst under group GT_INNER (distributor) (request id: 202610150806120078129388268d9d6g9Hv57H8)",
+        "type": "new_api_error",
+        "param": "",
+        "code": "model_not_found"
+      }
+    },
+    "elapsed_seconds": 0.096
+  },
+  {
+    "number": 10,
+    "label": "gpt-image-2.5-flare:masked_edit",
+    "endpoint": "/v1/images/edits",
+    "request": {
+      "multipart": "self-authored fixture and mask"
+    },
+    "http_status": 503,
+    "request_id": null,
+    "error": {
+      "error": {
+        "message": "No available channel for model gpt-image-2.5-flare under group GT_INNER (distributor) (request id: 202610150806120724445418268d9d6O8ce9HNu)",
+        "type": "new_api_error",
+        "param": "",
+        "code": "model_not_found"
+      }
+    },
+    "elapsed_seconds": 0.061
+  },
+  {
+    "number": 11,
+    "label": "gpt-image-2:masked_edit",
+    "endpoint": "/v1/images/edits",
+    "request": {
+      "multipart": "self-authored fixture and mask"
+    },
+    "http_status": 503,
+    "request_id": null,
+    "error": {
+      "error": {
+        "message": "No available channel for model gpt-image-2 under group GT_INNER (distributor) (request id: 202610150806121361886568268d9d6M1koFvSD)",
+        "type": "new_api_error",
+        "param": "",
+        "code": "model_not_found"
+      }
+    },
+    "elapsed_seconds": 0.063
+  }
+]

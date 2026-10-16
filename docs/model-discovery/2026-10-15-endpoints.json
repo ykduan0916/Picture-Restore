@@ -1,0 +1,16 @@
+{
+  "observed_date": "2026-10-15",
+  "source": "/api/pricing",
+  "verification": "public_metadata_only",
+  "supported_endpoint": {
+    "anthropic": {
+      "path": "/v1/messages",
+      "method": "POST"
+    },
+    "openai": {
+      "path": "/v1/chat/completions",
+      "method": "POST"
+    }
+  },
+  "pricing_version": "a42d372ccf0b5dd13ecf71203521f9d2"
+}

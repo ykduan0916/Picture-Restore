@@ -1,0 +1,12 @@
+{
+  "run": "2026-10-15_160543",
+  "fixture_sha256": {
+    "edit_mask.png": "4c74fdf235ac324151fad500e37a7a88e0f2208afced20caa4a9f45ee44acc60",
+    "edit_original.png": "6cdabf686f64c33996f37763ec6a3bbfd96289db339e6aa3475b03dd9fb07771",
+    "vision_a.png": "42ffb41b4125df5f7b71ad6643529eccca20d882bea3f4f5977299086a242f61",
+    "vision_b.png": "4467fbde8f9a6e92e3b3bfca7275d339ba8e9a93d80033c047419442b9eaf0ae"
+  },
+  "probe_dependency": "Pillow==12.3.0",
+  "script_sha256_after_nonnetwork_validation_fix": "a1dd42a1846ac344bb438737e768c9e490bf973bde7769e8401d168be310e01f",
+  "post_run_changes": "Malformed JSON parser now returns failure; unused successful-edit metric now uses actual protected alpha mask. No requests replayed."
+}

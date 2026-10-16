@@ -1,0 +1,313 @@
+{
+  "observed_date": "2026-10-15",
+  "source": "/api/pricing",
+  "verification": "public_catalog_not_token_billing",
+  "data": [
+    {
+      "model_name": "kimi-3",
+      "quota_type": 0,
+      "model_ratio": 1.49,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.10067114094,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-6-sol",
+      "quota_type": 0,
+      "model_ratio": 37.5,
+      "model_price": 0,
+      "completion_ratio": 2,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "deepseek-v4-pro",
+      "quota_type": 0,
+      "model_ratio": 0.87,
+      "model_price": 0,
+      "completion_ratio": 2,
+      "cache_ratio": 0.0833333333,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-opus-4-8",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-",
+      "quota_type": 0,
+      "model_ratio": 37.5,
+      "model_price": 0,
+      "completion_ratio": 1,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-5.6-terra",
+      "quota_type": 0,
+      "model_ratio": 1,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-image-2.5-flare",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "image_ratio": 6,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "deepseek-v4-1-flash",
+      "quota_type": 0,
+      "model_ratio": 0.149,
+      "model_price": 0,
+      "completion_ratio": 4,
+      "cache_ratio": 0.020134228188,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-opus-5",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "model_name": "claude-opus-5-5",
+      "quota_type": 0,
+      "model_ratio": 2,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.05,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "model_name": "claude-sonnet-5-5",
+      "quota_type": 0,
+      "model_ratio": 1,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.05,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-5.5",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-6.1-sol",
+      "quota_type": 0,
+      "model_ratio": 1,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.05,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-sonnet-5",
+      "quota_type": 0,
+      "model_ratio": 1,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "model_name": "claude-haiku-5-5",
+      "quota_type": 0,
+      "model_ratio": 37.5,
+      "model_price": 0,
+      "completion_ratio": 1,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "model_name": "glm-5.3",
+      "quota_type": 0,
+      "model_ratio": 0.595,
+      "model_price": 0,
+      "completion_ratio": 3.504201680672,
+      "cache_ratio": 0.252100840336,
+      "supported_endpoint_types": [
+        "openai",
+        "anthropic"
+      ]
+    },
+    {
+      "model_name": "gpt-image-2",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "cache_ratio": 0.25,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "glm-5.3-flash",
+      "quota_type": 0,
+      "model_ratio": 0.06,
+      "model_price": 0,
+      "completion_ratio": 3.5,
+      "cache_ratio": 0.283333333333,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-image-2.5-sunburst",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "image_ratio": 1.6,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "deepseek-v4-flash",
+      "quota_type": 0,
+      "model_ratio": 0.07,
+      "model_price": 0,
+      "completion_ratio": 2,
+      "cache_ratio": 0.2,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "glm-5.2",
+      "quota_type": 0,
+      "model_ratio": 0.547945205479452,
+      "model_price": 0,
+      "completion_ratio": 3.5,
+      "cache_ratio": 0.25,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-opus-4-6",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-6-astra",
+      "quota_type": 0,
+      "model_ratio": 5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-opus-4-7",
+      "quota_type": 0,
+      "model_ratio": 2.5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "claude-sonnet-4-6",
+      "quota_type": 0,
+      "model_ratio": 1.5,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "anthropic",
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-5.6-sol",
+      "quota_type": 0,
+      "model_ratio": 2,
+      "model_price": 0,
+      "completion_ratio": 5,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    },
+    {
+      "model_name": "gpt-5.6-luna",
+      "quota_type": 0,
+      "model_ratio": 0.1,
+      "model_price": 0,
+      "completion_ratio": 6,
+      "cache_ratio": 0.1,
+      "supported_endpoint_types": [
+        "openai"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "model": "claude-sonnet-5-5",
+  "protocol": "chat",
+  "tool_call": "pass",
+  "tool_roundtrip": "pass",
+  "multi_image": "pass",
+  "tool_request": 3,
+  "tool_result_request": 7,
+  "vision_request": 8,
+  "vision_answer": {
+    "first_right_color": "blue",
+    "second_right_color": "green",
+    "second_extra_shape": "triangle",
+    "second_extra_color": "yellow",
+    "unchanged_left_shape": "square",
+    "unchanged_label": "L7"
+  },
+  "vision_expected": {
+    "first_right_color": "blue",
+    "second_right_color": "green",
+    "second_extra_shape": "triangle",
+    "second_extra_color": "yellow",
+    "unchanged_left_shape": "square",
+    "unchanged_label": "L7"
+  },
+  "vision_checks": {
+    "first_right_color": true,
+    "second_right_color": true,
+    "second_extra_shape": true,
+    "second_extra_color": true,
+    "unchanged_left_shape": true,
+    "unchanged_label": true
+  }
+}

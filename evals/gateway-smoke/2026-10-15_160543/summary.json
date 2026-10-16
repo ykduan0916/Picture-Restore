@@ -1,0 +1,141 @@
+{
+  "suite": "all",
+  "requests_sent": 11,
+  "automatic_retries": 0,
+  "settled_cost": null,
+  "results": [
+    {
+      "model": "gpt-5.6-luna",
+      "protocol": "responses",
+      "tool_call": "request_failed",
+      "tool_roundtrip": "not_tested",
+      "multi_image": "request_failed",
+      "tool_request": 2,
+      "vision_request": 4,
+      "vision_answer": null,
+      "vision_expected": {
+        "first_right_color": "blue",
+        "second_right_color": "green",
+        "second_extra_shape": "triangle",
+        "second_extra_color": "yellow",
+        "unchanged_left_shape": "square",
+        "unchanged_label": "L7"
+      },
+      "vision_checks": {
+        "first_right_color": false,
+        "second_right_color": false,
+        "second_extra_shape": false,
+        "second_extra_color": false,
+        "unchanged_left_shape": false,
+        "unchanged_label": false
+      }
+    },
+    {
+      "model": "claude-sonnet-5-5",
+      "protocol": "chat",
+      "tool_call": "pass",
+      "tool_roundtrip": "pass",
+      "multi_image": "pass",
+      "tool_request": 3,
+      "tool_result_request": 7,
+      "vision_request": 8,
+      "vision_answer": {
+        "first_right_color": "blue",
+        "second_right_color": "green",
+        "second_extra_shape": "triangle",
+        "second_extra_color": "yellow",
+        "unchanged_left_shape": "square",
+        "unchanged_label": "L7"
+      },
+      "vision_expected": {
+        "first_right_color": "blue",
+        "second_right_color": "green",
+        "second_extra_shape": "triangle",
+        "second_extra_color": "yellow",
+        "unchanged_left_shape": "square",
+        "unchanged_label": "L7"
+      },
+      "vision_checks": {
+        "first_right_color": true,
+        "second_right_color": true,
+        "second_extra_shape": true,
+        "second_extra_color": true,
+        "unchanged_left_shape": true,
+        "unchanged_label": true
+      }
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "protocol": "responses",
+      "tool_call": "pass",
+      "tool_roundtrip": "pass",
+      "multi_image": "pass",
+      "tool_request": 1,
+      "tool_result_request": 5,
+      "vision_request": 6,
+      "vision_answer": {
+        "first_right_color": "blue",
+        "second_right_color": "green",
+        "second_extra_shape": "triangle",
+        "second_extra_color": "yellow",
+        "unchanged_left_shape": "square",
+        "unchanged_label": "L7"
+      },
+      "vision_expected": {
+        "first_right_color": "blue",
+        "second_right_color": "green",
+        "second_extra_shape": "triangle",
+        "second_extra_color": "yellow",
+        "unchanged_left_shape": "square",
+        "unchanged_label": "L7"
+      },
+      "vision_checks": {
+        "first_right_color": true,
+        "second_right_color": true,
+        "second_extra_shape": true,
+        "second_extra_color": true,
+        "unchanged_left_shape": true,
+        "unchanged_label": true
+      }
+    },
+    {
+      "model": "gpt-image-2.5-sunburst",
+      "request": 9,
+      "edit_interface": "request_failed",
+      "content_quality": "not_evaluated",
+      "settings": {
+        "model": "gpt-image-2.5-sunburst",
+        "prompt": "Edit the provided test product image. Change ONLY the flat gray background to a flat light cyan background (#b9eff2). Keep the exact red bottle silhouette, black cap, white label with L7, and small blue circular mark unchanged. The mask transparent area is editable; opaque area is protected. Do not add shadows, decorations or extra text.",
+        "size": "1024x1024",
+        "quality": "low",
+        "n": "1"
+      }
+    },
+    {
+      "model": "gpt-image-2.5-flare",
+      "request": 10,
+      "edit_interface": "request_failed",
+      "content_quality": "not_evaluated",
+      "settings": {
+        "model": "gpt-image-2.5-flare",
+        "prompt": "Edit the provided test product image. Change ONLY the flat gray background to a flat light cyan background (#b9eff2). Keep the exact red bottle silhouette, black cap, white label with L7, and small blue circular mark unchanged. The mask transparent area is editable; opaque area is protected. Do not add shadows, decorations or extra text.",
+        "size": "1024x1024",
+        "quality": "low",
+        "n": "1"
+      }
+    },
+    {
+      "model": "gpt-image-2",
+      "request": 11,
+      "edit_interface": "request_failed",
+      "content_quality": "not_evaluated",
+      "settings": {
+        "model": "gpt-image-2",
+        "prompt": "Edit the provided test product image. Change ONLY the flat gray background to a flat light cyan background (#b9eff2). Keep the exact red bottle silhouette, black cap, white label with L7, and small blue circular mark unchanged. The mask transparent area is editable; opaque area is protected. Do not add shadows, decorations or extra text.",
+        "size": "1024x1024",
+        "quality": "low",
+        "n": "1"
+      }
+    }
+  ]
+}

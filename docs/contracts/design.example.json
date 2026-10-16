@@ -1,0 +1,53 @@
+{
+  "schema_version": "0.2",
+  "example_only": true,
+  "job_id": "job_example_001",
+  "revision": 1,
+  "created_by_role": "designer",
+  "task_revision": 1,
+  "design_id": "design_fixture_001",
+  "brand_spec": {
+    "id": "brand_fixture_001",
+    "version": 1
+  },
+  "style": {
+    "intent": "清爽夏日，商品细节清楚",
+    "palette": [
+      "#F4F7F2",
+      "#365B50",
+      "#182823"
+    ],
+    "background": "简洁浅色台面与柔和远景，不要求改变商品视角",
+    "lighting": "背景与原图可见光向协调，商品本身不重绘",
+    "shadow": "独立接触阴影层"
+  },
+  "promo_layout": {
+    "width": 1080,
+    "height": 1440,
+    "coordinate_system": "normalized_xywh",
+    "product_region": [
+      0.15,
+      0.28,
+      0.7,
+      0.5
+    ],
+    "title_region": [
+      0.08,
+      0.06,
+      0.84,
+      0.12
+    ],
+    "price_region": [
+      0.08,
+      0.84,
+      0.84,
+      0.1
+    ],
+    "font_asset": "fixture_font_to_be_licensed",
+    "title_fact_ref": "facts.product_name",
+    "price_fact_ref": "facts.price",
+    "text_rendering": "deterministic_layer",
+    "overlap_product_allowed": false
+  },
+  "constraints_inherited_from": "task:job_example_001@1"
+}
