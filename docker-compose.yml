@@ -1,26 +1,24 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: picture_renew_postgres
+    container_name: picture-restore-postgres
     environment:
-      POSTGRES_USER: picture_renew
-      POSTGRES_PASSWORD: dev_password
-      POSTGRES_DB: picture_renew_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: picture_restore
     ports:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U picture_renew"]
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
 
   redis:
     image: redis:7-alpine
-    container_name: picture_renew_redis
+    container_name: picture-restore-redis
     ports:
       - "6379:6379"
     volumes:
@@ -33,7 +31,7 @@ services:
 
   minio:
     image: minio/minio:latest
-    container_name: picture_renew_minio
+    container_name: picture-restore-minio
     command: server /data --console-address ":9001"
     environment:
       MINIO_ROOT_USER: minioadmin
@@ -45,8 +43,8 @@ services:
       - minio_data:/data
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 10s
-      timeout: 5s
+      interval: 30s
+      timeout: 20s
       retries: 3
 
 volumes:

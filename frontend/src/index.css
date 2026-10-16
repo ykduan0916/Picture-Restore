@@ -1,6 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  /* 代码和数据使用等宽字体 */
+  .font-mono {
+    font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  }
+}
+
+@layer utilities {
+  /* 8px 网格系统 */
+  .text-balance {
+    text-wrap: balance;
+  }
+}
 
 @layer base {
   * {
