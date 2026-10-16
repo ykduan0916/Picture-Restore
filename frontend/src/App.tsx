@@ -1,333 +1,138 @@
-import { useState } from 'react'
-import {
-  Upload, Search, Filter, MoreHorizontal, Play, Check, AlertCircle,
-  Clock, Layers, Image as ImageIcon, Settings, ChevronRight, Plus,
-  FileText, Download, Trash2, Copy, Eye, Grid, List
-} from 'lucide-react'
+import { useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import { Github } from 'lucide-react'
+import { api } from './lib/api'
+import { href, useRoute, type Route } from './lib/router'
+import Home from './views/Home'
+import NewTask from './views/NewTask'
+import TaskList from './views/TaskList'
+import TaskDetail from './views/TaskDetail'
+import Brands from './views/Brands'
+import Guide from './views/Guide'
 
-type View = 'grid' | 'list'
-type TaskStatus = 'pending' | 'processing' | 'completed' | 'failed'
-
-interface Task {
-  id: string
-  name: string
-  thumbnail: string
-  type: 'white-bg' | 'scene' | 'promo'
-  status: TaskStatus
-  created: string
-  size: string
+const TITLES: Record<Route['name'], string> = {
+  home: '换背景，不换商品',
+  new: '新建任务',
+  tasks: '任务',
+  task: '任务详情',
+  brands: '品牌规范',
+  guide: '使用说明',
 }
 
-function App() {
-  const [view, setView] = useState<View>('grid')
-  const [selectedTask, setSelectedTask] = useState<string | null>(null)
+export default function App() {
+  const route = useRoute()
 
-  const tasks: Task[] = [
-    {
-      id: '1',
-      name: '商品_SKU_8492.jpg',
-      thumbnail: '/placeholder.jpg',
-      type: 'white-bg',
-      status: 'completed',
-      created: '2分钟前',
-      size: '2.4 MB'
-    },
-    {
-      id: '2',
-      name: '商品_SKU_8493.jpg',
-      thumbnail: '/placeholder.jpg',
-      type: 'scene',
-      status: 'processing',
-      created: '5分钟前',
-      size: '3.1 MB'
-    }
-  ]
+  useEffect(() => {
+    document.title = `${TITLES[route.name]} | Picture Restore`
+  }, [route.name])
 
   return (
-    <div className="h-screen flex flex-col bg-[#F8F9FA]">
-      {/* 顶部工具栏 */}
-      <header className="h-14 bg-white border-b border-gray-200 flex items-center px-4 gap-3">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-[#F59E0B] rounded flex items-center justify-center">
-            <ImageIcon className="w-5 h-5 text-white" />
-          </div>
-          <span className="text-sm font-semibold text-gray-900">Picture Restore</span>
-        </div>
-
-        <div className="h-6 w-px bg-gray-200" />
-
-        <div className="flex-1 max-w-md">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input
-              type="text"
-              placeholder="搜索任务..."
-              className="w-full h-8 pl-9 pr-3 text-sm bg-gray-50 border border-gray-200 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F59E0B] focus:border-transparent"
-            />
-          </div>
-        </div>
-
-        <div className="flex items-center gap-2 ml-auto">
-          <button className="h-8 px-3 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md flex items-center gap-2">
-            <Filter className="w-4 h-4" />
-            筛选
-          </button>
-          <button className="h-8 px-4 text-sm font-medium text-white bg-[#F59E0B] hover:bg-[#D97706] rounded-md flex items-center gap-2">
-            <Plus className="w-4 h-4" />
-            新建任务
-          </button>
-        </div>
-      </header>
-
-      <div className="flex flex-1 overflow-hidden">
-        {/* 左侧任务列表 */}
-        <aside className="w-80 bg-white border-r border-gray-200 flex flex-col">
-          <div className="h-12 px-4 flex items-center justify-between border-b border-gray-200">
-            <h2 className="text-sm font-semibold text-gray-900">任务列表</h2>
-            <div className="flex items-center gap-1">
-              <button
-                onClick={() => setView('grid')}
-                className={`p-1.5 rounded ${view === 'grid' ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
-              >
-                <Grid className="w-4 h-4 text-gray-600" />
-              </button>
-              <button
-                onClick={() => setView('list')}
-                className={`p-1.5 rounded ${view === 'list' ? 'bg-gray-100' : 'hover:bg-gray-50'}`}
-              >
-                <List className="w-4 h-4 text-gray-600" />
-              </button>
-            </div>
-          </div>
-
-          <div className="flex-1 overflow-y-auto p-3 space-y-2">
-            {tasks.map(task => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                view={view}
-                selected={selectedTask === task.id}
-                onClick={() => setSelectedTask(task.id)}
-              />
-            ))}
-          </div>
-
-          <div className="h-16 px-4 border-t border-gray-200 flex items-center justify-between">
-            <div className="text-xs text-gray-500">
-              共 {tasks.length} 个任务
-            </div>
-            <button className="text-xs text-[#F59E0B] hover:underline">
-              查看全部
-            </button>
-          </div>
-        </aside>
-
-        {/* 中央画布 */}
-        <main className="flex-1 flex flex-col">
-          {selectedTask ? (
-            <TaskEditor task={tasks.find(t => t.id === selectedTask)!} />
-          ) : (
-            <EmptyState />
-          )}
-        </main>
-
-        {/* 右侧属性面板 */}
-        {selectedTask && (
-          <aside className="w-80 bg-white border-l border-gray-200 overflow-y-auto">
-            <PropertiesPanel task={tasks.find(t => t.id === selectedTask)!} />
-          </aside>
-        )}
-      </div>
-    </div>
-  )
-}
-
-function TaskCard({ task, view, selected, onClick }: {
-  task: Task
-  view: View
-  selected: boolean
-  onClick: () => void
-}) {
-  const statusConfig = {
-    pending: { icon: Clock, color: 'text-gray-400', bg: 'bg-gray-100', label: '等待中' },
-    processing: { icon: Play, color: 'text-[#F59E0B]', bg: 'bg-[#FEF3C7]', label: '处理中' },
-    completed: { icon: Check, color: 'text-[#10B981]', bg: 'bg-[#D1FAE5]', label: '已完成' },
-    failed: { icon: AlertCircle, color: 'text-[#EC4899]', bg: 'bg-[#FCE7F3]', label: '失败' }
-  }
-
-  const config = statusConfig[task.status]
-  const StatusIcon = config.icon
-
-  if (view === 'list') {
-    return (
-      <button
-        onClick={onClick}
-        className={`w-full p-3 rounded-lg border text-left transition ${
-          selected
-            ? 'border-[#F59E0B] bg-[#FFFBEB]'
-            : 'border-gray-200 hover:border-gray-300 bg-white'
-        }`}
+    <div className="flex min-h-screen flex-col">
+      <a
+        href="#main"
+        onClick={(e) => {
+          e.preventDefault()
+          document.getElementById('main')?.focus()
+        }}
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded-md focus:bg-panel focus:px-3 focus:py-2"
       >
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gray-100 rounded flex items-center justify-center flex-shrink-0">
-            <ImageIcon className="w-6 h-6 text-gray-400" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">{task.name}</p>
-            <div className="flex items-center gap-2 mt-1">
-              <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded text-xs font-medium ${config.bg} ${config.color}`}>
-                <StatusIcon className="w-3 h-3" />
-                {config.label}
-              </span>
-              <span className="text-xs text-gray-500">{task.created}</span>
-            </div>
-          </div>
-        </div>
-      </button>
-    )
-  }
+        跳到主要内容
+      </a>
+      <Header route={route} />
+      <main id="main" tabIndex={-1} className="flex-1 outline-none">
+        {route.name === 'home' && <Home />}
+        {route.name === 'new' && <NewTask />}
+        {route.name === 'tasks' && <TaskList />}
+        {route.name === 'task' && <TaskDetail id={route.id} />}
+        {route.name === 'brands' && <Brands />}
+        {route.name === 'guide' && <Guide />}
+      </main>
+    </div>
+  )
+}
+
+const NAV: { route: Route; label: string }[] = [
+  { route: { name: 'tasks' }, label: '任务' },
+  { route: { name: 'brands' }, label: '品牌规范' },
+  { route: { name: 'guide' }, label: '使用说明' },
+]
+
+function Header({ route }: { route: Route }) {
+  const health = useQuery({ queryKey: ['health'], queryFn: api.health, refetchInterval: 15_000, retry: false })
+  const online = health.isSuccess
+  const statusText = online ? '处理服务已连接' : health.isLoading ? '正在连接处理服务' : '处理服务未连接'
+  const isActive = (r: Route) => r.name === route.name || (r.name === 'tasks' && route.name === 'task')
 
   return (
-    <button
-      onClick={onClick}
-      className={`w-full rounded-lg border overflow-hidden text-left transition ${
-        selected
-          ? 'border-[#F59E0B] ring-2 ring-[#FEF3C7]'
-          : 'border-gray-200 hover:border-gray-300'
-      }`}
-    >
-      <div className="aspect-video bg-gray-100 flex items-center justify-center">
-        <ImageIcon className="w-8 h-8 text-gray-400" />
-      </div>
-      <div className="p-3 bg-white">
-        <p className="text-xs font-medium text-gray-900 truncate mb-2">{task.name}</p>
-        <div className="flex items-center justify-between">
-          <span className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium ${config.bg} ${config.color}`}>
-            <StatusIcon className="w-3 h-3" />
-            {config.label}
+    <header className="sticky top-0 z-20 border-b border-line bg-panel/95 backdrop-blur">
+      <div className="mx-auto flex h-14 max-w-[1440px] items-center gap-3 px-4 sm:gap-8 sm:px-6">
+        <a href={href({ name: 'home' })} className="flex shrink-0 items-center gap-2.5 rounded-md" translate="no" aria-label="Picture Restore 首页">
+          <Mark />
+          <span className="hidden whitespace-nowrap text-[15px] font-semibold tracking-tight sm:inline">Picture Restore</span>
+        </a>
+
+        <nav aria-label="主导航" className="flex min-w-0 items-center gap-1 overflow-x-auto">
+          {NAV.map((item) => {
+            const active = isActive(item.route)
+            return (
+              <a
+                key={item.label}
+                href={href(item.route)}
+                aria-current={active ? 'page' : undefined}
+                className={`flex h-8 items-center whitespace-nowrap rounded-md px-2.5 text-sm transition-colors sm:px-3 ${
+                  active ? 'bg-paper font-medium text-ink' : 'text-graphite hover:bg-paper hover:text-ink'
+                }`}
+              >
+                {item.label}
+              </a>
+            )
+          })}
+        </nav>
+
+        <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-3">
+          <span className="flex items-center gap-2 whitespace-nowrap text-13 text-graphite" role="status" title={statusText}>
+            <span
+              className={`h-2 w-2 rounded-full ${online ? 'bg-mat' : health.isLoading ? 'bg-quiet' : 'bg-fault'}`}
+              aria-hidden="true"
+            />
+            <span className="hidden lg:inline">{statusText}</span>
+            <span className="sr-only lg:hidden">{statusText}</span>
           </span>
-          <span className="text-xs text-gray-500">{task.size}</span>
+          <a
+            href="https://github.com/ykduan0916/Picture-Restore"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden h-8 w-8 items-center justify-center rounded-md text-graphite transition-colors hover:bg-paper hover:text-ink sm:flex"
+            aria-label="源代码（GitHub，新窗口打开）"
+            title="源代码"
+          >
+            <Github className="h-4 w-4" aria-hidden="true" />
+          </a>
+          {route.name !== 'new' && route.name !== 'tasks' && (
+            <a href={href({ name: 'new' })} className="btn-primary hidden h-8 px-3 sm:inline-flex">
+              新建任务
+            </a>
+          )}
         </div>
       </div>
-    </button>
+    </header>
   )
 }
 
-function TaskEditor({ task }: { task: Task }) {
+/** 取景框与商品：对应"保留原商品，只换周围" */
+export function Mark({ size = 28 }: { size?: number }) {
   return (
-    <>
-      <div className="h-12 px-4 bg-white border-b border-gray-200 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <h3 className="text-sm font-semibold text-gray-900">{task.name}</h3>
-          <span className="text-xs text-gray-500 font-mono">{task.size}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button className="h-8 px-3 text-sm text-gray-700 hover:bg-gray-50 rounded-md">
-            预览
-          </button>
-          <button className="h-8 px-3 text-sm text-white bg-[#10B981] hover:bg-[#059669] rounded-md flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            导出
-          </button>
-        </div>
-      </div>
-
-      <div className="flex-1 p-8 overflow-auto">
-        <div className="max-w-4xl mx-auto">
-          <div className="aspect-[4/3] bg-white rounded-lg border-2 border-dashed border-gray-300 flex items-center justify-center">
-            <div className="text-center">
-              <ImageIcon className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-              <p className="text-sm text-gray-500">画布加载中...</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <rect width="32" height="32" rx="7" fill="#1F6B52" />
+      <path
+        d="M8 12.5V8h4.5M19.5 8H24v4.5M24 19.5V24h-4.5M12.5 24H8v-4.5"
+        fill="none"
+        stroke="#fff"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <rect x="12.5" y="12.5" width="7" height="7" rx="1.5" fill="#fff" />
+    </svg>
   )
 }
-
-function EmptyState() {
-  return (
-    <div className="flex-1 flex items-center justify-center p-8">
-      <div className="text-center max-w-md">
-        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Upload className="w-8 h-8 text-gray-400" />
-        </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-2">
-          上传商品图开始处理
-        </h3>
-        <p className="text-sm text-gray-500 mb-6">
-          支持 JPG、PNG 格式，自动识别商品主体并生成白底图、场景图
-        </p>
-        <label className="inline-flex items-center gap-2 h-10 px-6 text-sm font-medium text-white bg-[#F59E0B] hover:bg-[#D97706] rounded-md cursor-pointer">
-          <Upload className="w-4 h-4" />
-          选择文件
-          <input type="file" className="sr-only" accept="image/*" />
-        </label>
-      </div>
-    </div>
-  )
-}
-
-function PropertiesPanel({ task }: { task: Task }) {
-  return (
-    <div className="p-4 space-y-6">
-      <section>
-        <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
-          任务信息
-        </h4>
-        <div className="space-y-3">
-          <Property label="文件名" value={task.name} />
-          <Property label="大小" value={task.size} />
-          <Property label="创建时间" value={task.created} />
-          <Property label="状态" value="已完成" />
-        </div>
-      </section>
-
-      <section>
-        <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
-          生成设置
-        </h4>
-        <div className="space-y-3">
-          <Property label="类型" value="白底图" />
-          <Property label="尺寸" value="1200 × 1200 px" />
-          <Property label="格式" value="PNG" />
-          <Property label="质量" value="无损" />
-        </div>
-      </section>
-
-      <section>
-        <h4 className="text-xs font-semibold text-gray-900 uppercase tracking-wider mb-3">
-          图层
-        </h4>
-        <div className="space-y-2">
-          <LayerItem name="商品主体" visible locked />
-          <LayerItem name="背景" visible />
-          <LayerItem name="阴影" visible />
-        </div>
-      </section>
-    </div>
-  )
-}
-
-function Property({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-xs text-gray-500">{label}</span>
-      <span className="text-xs font-medium text-gray-900">{value}</span>
-    </div>
-  )
-}
-
-function LayerItem({ name, visible, locked }: { name: string; visible?: boolean; locked?: boolean }) {
-  return (
-    <div className="flex items-center gap-2 p-2 rounded hover:bg-gray-50">
-      <Layers className="w-4 h-4 text-gray-400" />
-      <span className="flex-1 text-xs text-gray-700">{name}</span>
-      {visible && <Eye className="w-3.5 h-3.5 text-gray-400" />}
-      {locked && <span className="text-xs text-gray-400">🔒</span>}
-    </div>
-  )
-}
-
-export default App

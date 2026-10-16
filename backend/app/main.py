@@ -5,17 +5,13 @@ from typing import AsyncGenerator
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from .api.routes import health, jobs
+from .api.routes import brands, health, jobs
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator:
     """应用生命周期管理。"""
-    # 启动时
-    print("🚀 Picture Restore API 启动中...")
     yield
-    # 关闭时
-    print("👋 Picture Restore API 关闭")
 
 
 app = FastAPI(
@@ -25,10 +21,10 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# CORS 配置
+# 开发时前端经 Vite 代理访问 /api；直接跨域访问仅允许本机 Vite 端口
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173", "http://localhost:5174"],
+    allow_origin_regex=r"^http://(localhost|127\.0\.0\.1):51\d\d$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -37,6 +33,7 @@ app.add_middleware(
 # 注册路由
 app.include_router(health.router, prefix="/api", tags=["健康检查"])
 app.include_router(jobs.router, prefix="/api", tags=["任务管理"])
+app.include_router(brands.router, prefix="/api", tags=["品牌规范"])
 
 
 @app.get("/")

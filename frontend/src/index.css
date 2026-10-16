@@ -1,39 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-border;
+  :root {
+    color-scheme: light;
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    @apply bg-paper font-sans text-ink antialiased;
+    font-size: 14px;
+    line-height: 1.5;
   }
 
-  /* 代码和数据使用等宽字体 */
-  .font-mono {
-    font-family: 'JetBrains Mono', 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  :focus-visible {
+    outline: 2px solid theme('colors.mat.DEFAULT');
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: theme('colors.mat.soft');
+  }
+}
+
+@layer components {
+  .field {
+    @apply h-9 w-full rounded-md border border-line bg-panel px-3 text-sm text-ink transition-colors placeholder:text-quiet hover:border-[#C9CED4] focus:border-mat focus:outline-none focus:ring-2 focus:ring-mat/20;
+  }
+
+  .field-invalid {
+    @apply border-fault hover:border-fault focus:border-fault focus:ring-fault/20;
+  }
+
+  .btn {
+    @apply inline-flex h-9 items-center justify-center gap-2 rounded-md px-4 text-sm font-medium transition-colors disabled:cursor-not-allowed;
+  }
+
+  .btn-primary {
+    @apply btn bg-mat text-white hover:bg-mat-strong disabled:bg-[#B7C3BE] disabled:text-white;
+  }
+
+  .btn-secondary {
+    @apply btn border border-line bg-panel text-ink hover:bg-paper;
+  }
+
+  .btn-quiet {
+    @apply btn h-8 px-2.5 text-graphite hover:bg-paper hover:text-ink;
   }
 }
 
 @layer utilities {
-  /* 8px 网格系统 */
-  .text-balance {
-    text-wrap: balance;
+  /* 中性灰棋盘底：看商品颜色不受界面色偏影响，同时能看出透明区域 */
+  .stage-backdrop {
+    background-color: #d5d8dc;
+    background-image: conic-gradient(#ced1d5 25%, transparent 0 50%, #ced1d5 0 75%, transparent 0);
+    background-size: 20px 20px;
   }
 }
 
-@layer base {
-  * {
-    @apply border-surface-200;
-  }
-  body {
-    @apply bg-surface-50 text-surface-900 antialiased;
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

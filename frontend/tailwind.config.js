@@ -1,29 +1,32 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-        },
-        surface: {
-          50: '#fafafa',
-          100: '#f5f5f5',
-          200: '#e5e5e5',
-          800: '#262626',
-          900: '#171717',
-        }
+        ink: '#1C1F23',
+        graphite: '#5B6470',
+        quiet: '#8A929C',
+        line: '#E3E6EA',
+        paper: '#F4F5F7',
+        panel: '#FFFFFF',
+        stage: '#D5D8DC',
+        mat: { DEFAULT: '#1F6B52', strong: '#17533F', soft: '#E3F0EB' },
+        signal: { DEFAULT: '#9A5B0B', soft: '#FBF0DD' },
+        fault: { DEFAULT: '#B3261E', soft: '#FBE9E7' },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: [
+          '"IBM Plex Sans"',
+          '"PingFang SC"',
+          '"Hiragino Sans GB"',
+          '"Noto Sans SC"',
+          '"Microsoft YaHei"',
+          'sans-serif',
+        ],
+      },
+      fontSize: {
+        '13': ['13px', '20px'],
       },
     },
   },

@@ -1,5 +1,5 @@
 """健康检查路由。"""
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import APIRouter
 
@@ -7,23 +7,16 @@ router = APIRouter()
 
 
 @router.get("/health")
-async def health_check():
-    """健康检查端点。"""
+async def health_check() -> dict:
+    """服务存活与当前能力状态。
+
+    生成能力和持久化尚未接入时如实返回，前端据此提示用户。
+    """
     return {
-        "status": "healthy",
-        "timestamp": datetime.utcnow().isoformat(),
+        "status": "ok",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
         "service": "picture-restore-api",
         "version": "0.1.0",
-    }
-
-
-@router.get("/health/ready")
-async def readiness_check():
-    """就绪检查端点。"""
-    # TODO: 检查数据库、Redis 连接
-    return {
-        "status": "ready",
-        "database": "not_connected",
-        "redis": "not_connected",
-        "storage": "not_connected",
+        "storage": "memory",
+        "generation": "not_connected",
     }

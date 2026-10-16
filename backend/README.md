@@ -34,12 +34,12 @@ docker-compose up -d
 uv run alembic upgrade head
 
 # 4. 启动开发服务器
-uv run uvicorn app.api.main:app --reload --host 0.0.0.0 --port 8000
+uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8888
 ```
 
 访问：
-- API: http://localhost:8000
-- API 文档: http://localhost:8000/docs
+- API: http://localhost:8888
+- API 文档: http://localhost:8888/docs
 - MinIO 控制台: http://localhost:9001 (minioadmin / minioadmin)
 
 ## 项目结构
