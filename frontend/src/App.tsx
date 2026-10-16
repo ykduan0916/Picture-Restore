@@ -1,9 +1,14 @@
 import { useState } from 'react'
-import { Upload, Image, Sparkles, Layers, Download, Settings, Zap, ChevronRight } from 'lucide-react'
+import {
+  Upload, Image, Sparkles, Layers, Download, Settings, Zap, ChevronRight,
+  Github, Menu, X, User, LogOut, HelpCircle, FileText, Star, Clock, Folder
+} from 'lucide-react'
 
 function App() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null)
   const [previewUrl, setPreviewUrl] = useState<string | null>(null)
+  const [showUserMenu, setShowUserMenu] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(true)
 
   const handleFileSelect = (file: File) => {
     setSelectedFile(file)
@@ -12,47 +17,265 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex flex-col">
       {/* 顶部导航栏 */}
-      <nav className="bg-white border-b border-slate-200 px-6 py-4">
-        <div className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-              <Sparkles className="w-6 h-6 text-white" />
+      <nav className="bg-white border-b border-slate-200 px-6 py-3 sticky top-0 z-50 shadow-sm">
+        <div className="flex items-center justify-between max-w-[1920px] mx-auto">
+          <div className="flex items-center gap-6">
+            <button
+              onClick={() => setShowSidebar(!showSidebar)}
+              className="p-2 hover:bg-slate-100 rounded-lg transition lg:hidden"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h1 className="text-xl font-bold text-slate-900">Picture Restore</h1>
+                <p className="text-xs text-slate-500 hidden sm:block">AI 商品图生成平台</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-xl font-bold text-slate-900">Picture Restore</h1>
-              <p className="text-xs text-slate-500">AI 商品图生成平台</p>
+
+            {/* 导航链接 */}
+            <div className="hidden md:flex items-center gap-1 ml-8">
+              <NavLink href="#" active>工作台</NavLink>
+              <NavLink href="#projects">我的项目</NavLink>
+              <NavLink href="#templates">模板库</NavLink>
+              <NavLink href="#docs">文档</NavLink>
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition">
-              <Settings className="w-4 h-4" />
-              <span className="text-sm font-medium">设置</span>
+          <div className="flex items-center gap-3">
+            {/* GitHub Star */}
+            <a
+              href="https://github.com/ykduan0916/Picture-Restore"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:flex items-center gap-2 px-3 py-1.5 text-slate-600 hover:text-slate-900 bg-slate-50 hover:bg-slate-100 rounded-lg transition border border-slate-200"
+            >
+              <Github className="w-4 h-4" />
+              <span className="text-sm font-medium">Star</span>
+              <span className="text-xs bg-slate-200 px-1.5 py-0.5 rounded">128</span>
+            </a>
+
+            {/* 帮助 */}
+            <button className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition">
+              <HelpCircle className="w-5 h-5" />
             </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg transition">
+
+            {/* 升级按钮 */}
+            <button className="hidden sm:flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-lg transition">
               <Zap className="w-4 h-4" />
               <span className="text-sm font-medium">升级专业版</span>
             </button>
+
+            {/* 用户菜单 */}
+            <div className="relative">
+              <button
+                onClick={() => setShowUserMenu(!showUserMenu)}
+                className="flex items-center gap-2 p-1.5 hover:bg-slate-50 rounded-lg transition"
+              >
+                <div className="w-8 h-8 bg-gradient-to-br from-green-400 to-cyan-500 rounded-full flex items-center justify-center">
+                  <User className="w-5 h-5 text-white" />
+                </div>
+                <div className="hidden lg:block text-left">
+                  <p className="text-sm font-medium text-slate-900">ykduan0916</p>
+                  <p className="text-xs text-slate-500">免费版</p>
+                </div>
+              </button>
+
+              {showUserMenu && (
+                <div className="absolute right-0 mt-2 w-64 bg-white rounded-lg shadow-xl border border-slate-200 py-2">
+                  <div className="px-4 py-3 border-b border-slate-100">
+                    <p className="text-sm font-semibold text-slate-900">ykduan0916</p>
+                    <p className="text-xs text-slate-500">ykduan0916@users.noreply.github.com</p>
+                  </div>
+                  <MenuItem icon={<User />} text="个人资料" />
+                  <MenuItem icon={<Settings />} text="账号设置" />
+                  <MenuItem icon={<FileText />} text="使用统计" />
+                  <div className="border-t border-slate-100 mt-2 pt-2">
+                    <MenuItem icon={<LogOut />} text="退出登录" />
+                  </div>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </nav>
 
-      <div className="max-w-7xl mx-auto px-6 py-8">
-        {!selectedFile ? (
-          <WelcomeScreen onFileSelect={handleFileSelect} />
-        ) : (
-          <EditorView file={selectedFile} previewUrl={previewUrl} />
+      <div className="flex flex-1 overflow-hidden">
+        {/* 左侧边栏 */}
+        {showSidebar && (
+          <aside className="w-64 bg-white border-r border-slate-200 flex flex-col">
+            <div className="p-4 space-y-1 flex-1 overflow-y-auto">
+              <SidebarSection title="工作区">
+                <SidebarItem icon={<Sparkles />} text="新建项目" badge="New" active />
+                <SidebarItem icon={<Clock />} text="最近使用" count={8} />
+                <SidebarItem icon={<Star />} text="收藏夹" count={3} />
+              </SidebarSection>
+
+              <SidebarSection title="我的项目">
+                <SidebarItem icon={<Folder />} text="商品白底图" count={12} />
+                <SidebarItem icon={<Folder />} text="场景图生成" count={5} />
+                <SidebarItem icon={<Folder />} text="促销海报" count={8} />
+              </SidebarSection>
+
+              <SidebarSection title="模板库">
+                <SidebarItem icon={<Image />} text="电商主图" />
+                <SidebarItem icon={<Image />} text="社交媒体" />
+                <SidebarItem icon={<Image />} text="宣传海报" />
+              </SidebarSection>
+            </div>
+
+            {/* 底部信息 */}
+            <div className="p-4 border-t border-slate-200 bg-slate-50">
+              <div className="space-y-2 text-xs text-slate-600">
+                <div className="flex justify-between">
+                  <span>本月额度</span>
+                  <span className="font-medium">23 / 100</span>
+                </div>
+                <div className="w-full bg-slate-200 rounded-full h-1.5">
+                  <div className="bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 rounded-full" style={{ width: '23%' }}></div>
+                </div>
+                <a href="#upgrade" className="text-blue-600 hover:underline text-xs font-medium">
+                  升级获取更多额度 →
+                </a>
+              </div>
+            </div>
+          </aside>
         )}
+
+        {/* 主内容区 */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="max-w-[1600px] mx-auto px-6 py-8">
+            {!selectedFile ? (
+              <WelcomeScreen onFileSelect={handleFileSelect} />
+            ) : (
+              <EditorView file={selectedFile} previewUrl={previewUrl} />
+            )}
+          </div>
+        </main>
       </div>
+
+      {/* 底部信息栏 */}
+      <footer className="bg-white border-t border-slate-200 px-6 py-3">
+        <div className="max-w-[1920px] mx-auto flex items-center justify-between text-xs text-slate-500">
+          <div className="flex items-center gap-4">
+            <span>© 2024 Picture Restore</span>
+            <a href="https://github.com/ykduan0916/Picture-Restore" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 flex items-center gap-1">
+              <Github className="w-3 h-3" />
+              开源项目
+            </a>
+            <a href="#privacy" className="hover:text-slate-900">隐私政策</a>
+            <a href="#terms" className="hover:text-slate-900">服务条款</a>
+          </div>
+          <div className="flex items-center gap-4">
+            <StatusDot color="green" label="API" />
+            <StatusDot color="green" label="数据库" />
+            <StatusDot color="yellow" label="存储" />
+            <span>版本 v0.1.0</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+function NavLink({ href, children, active = false }: { href: string; children: React.ReactNode; active?: boolean }) {
+  return (
+    <a
+      href={href}
+      className={`px-3 py-2 rounded-lg text-sm font-medium transition ${
+        active
+          ? 'bg-slate-100 text-slate-900'
+          : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
+      }`}
+    >
+      {children}
+    </a>
+  )
+}
+
+function MenuItem({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <button className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 hover:bg-slate-50 transition">
+      <span className="w-4 h-4 text-slate-400">{icon}</span>
+      {text}
+    </button>
+  )
+}
+
+function SidebarSection({ title, children }: { title: string; children: React.ReactNode }) {
+  return (
+    <div className="mb-4">
+      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2 px-3">
+        {title}
+      </h3>
+      <div className="space-y-1">
+        {children}
+      </div>
+    </div>
+  )
+}
+
+function SidebarItem({
+  icon,
+  text,
+  count,
+  badge,
+  active = false
+}: {
+  icon: React.ReactNode
+  text: string
+  count?: number
+  badge?: string
+  active?: boolean
+}) {
+  return (
+    <button
+      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition ${
+        active
+          ? 'bg-blue-50 text-blue-700 font-medium'
+          : 'text-slate-700 hover:bg-slate-50'
+      }`}
+    >
+      <span className={`w-4 h-4 ${active ? 'text-blue-600' : 'text-slate-400'}`}>
+        {icon}
+      </span>
+      <span className="flex-1 text-left">{text}</span>
+      {count !== undefined && (
+        <span className="text-xs text-slate-400 font-medium">{count}</span>
+      )}
+      {badge && (
+        <span className="text-xs bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-medium">
+          {badge}
+        </span>
+      )}
+    </button>
+  )
+}
+
+function StatusDot({ color, label }: { color: 'green' | 'yellow' | 'red'; label: string }) {
+  const colorClasses = {
+    green: 'bg-green-400',
+    yellow: 'bg-yellow-400',
+    red: 'bg-red-400'
+  }
+
+  return (
+    <div className="flex items-center gap-1.5">
+      <div className={`w-2 h-2 rounded-full ${colorClasses[color]} ${color === 'green' ? 'animate-pulse' : ''}`} />
+      <span>{label}</span>
     </div>
   )
 }
 
 function WelcomeScreen({ onFileSelect }: { onFileSelect: (file: File) => void }) {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-12">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* 左侧：上传区域 */}
       <div className="space-y-6">
         <div>
@@ -140,13 +363,38 @@ function WelcomeScreen({ onFileSelect }: { onFileSelect: (file: File) => void })
           color="from-green-500 to-emerald-500"
         />
 
-        {/* 系统状态 */}
+        {/* GitHub 仓库信息 */}
         <div className="bg-gradient-to-br from-slate-800 to-slate-900 rounded-xl p-6 text-white">
-          <h3 className="text-sm font-semibold mb-4">系统状态</h3>
-          <div className="space-y-2 text-sm">
-            <StatusItem label="前端服务" status="running" url="http://localhost:5175" />
-            <StatusItem label="后端 API" status="running" url="http://localhost:8888" />
-            <StatusItem label="数据库" status="pending" />
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <h3 className="text-sm font-semibold mb-1">开源项目</h3>
+              <p className="text-xs text-slate-400">欢迎 Star 和贡献代码</p>
+            </div>
+            <Github className="w-8 h-8 text-slate-400" />
+          </div>
+
+          <a
+            href="https://github.com/ykduan0916/Picture-Restore"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block mb-3 text-blue-400 hover:underline font-mono text-sm"
+          >
+            github.com/ykduan0916/Picture-Restore
+          </a>
+
+          <div className="grid grid-cols-3 gap-3 text-center text-xs">
+            <div className="bg-white/10 rounded-lg py-2">
+              <div className="text-lg font-bold">128</div>
+              <div className="text-slate-400">Stars</div>
+            </div>
+            <div className="bg-white/10 rounded-lg py-2">
+              <div className="text-lg font-bold">24</div>
+              <div className="text-slate-400">Forks</div>
+            </div>
+            <div className="bg-white/10 rounded-lg py-2">
+              <div className="text-lg font-bold">v0.1</div>
+              <div className="text-slate-400">版本</div>
+            </div>
           </div>
         </div>
       </div>
@@ -220,7 +468,7 @@ function FeatureCard({ icon, title, description, color }: {
   return (
     <div className="bg-white rounded-xl p-6 border border-slate-200 hover:shadow-lg transition group">
       <div className="flex items-start gap-4">
-        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white group-hover:scale-110 transition`}>
+        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${color} flex items-center justify-center text-white group-hover:scale-110 transition flex-shrink-0`}>
           {icon}
         </div>
         <div className="flex-1">
@@ -228,28 +476,6 @@ function FeatureCard({ icon, title, description, color }: {
           <p className="text-sm text-slate-600">{description}</p>
         </div>
       </div>
-    </div>
-  )
-}
-
-function StatusItem({ label, status, url }: { label: string; status: 'running' | 'pending'; url?: string }) {
-  return (
-    <div className="flex items-center justify-between">
-      <span className="text-slate-300">{label}</span>
-      {status === 'running' ? (
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-          {url ? (
-            <a href={url} target="_blank" rel="noopener noreferrer" className="text-green-400 hover:underline text-xs">
-              运行中
-            </a>
-          ) : (
-            <span className="text-green-400 text-xs">运行中</span>
-          )}
-        </div>
-      ) : (
-        <span className="text-yellow-400 text-xs">待配置</span>
-      )}
     </div>
   )
 }
